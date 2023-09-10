@@ -1,0 +1,7 @@
+*.backup
+
+/.vscode
+/build
+/sourcecode
+/idc/bin
+/idc/log
