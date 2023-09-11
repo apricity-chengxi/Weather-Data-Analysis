@@ -1,3 +1,5 @@
 #pragma once
 
 #define PROJECT_PATH "${PROJECT_SOURCE_DIR}"
+
+#cmakedefine TEST_MSG
