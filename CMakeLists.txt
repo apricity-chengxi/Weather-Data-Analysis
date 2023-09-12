@@ -13,10 +13,8 @@ set(TEST_MSG ON)
 set(TEST_1 OFF)
 set(TEST_2 OFF)
 
-# 设置可执行文件的输出目录
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/idc/bin)
 # 设置库文档的输出目录
-SET(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib) 
+set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib) 
 
 configure_file(
     Define.h.in
