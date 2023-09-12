@@ -3,3 +3,5 @@
 #define PROJECT_PATH "${PROJECT_SOURCE_DIR}"
 
 #cmakedefine TEST_MSG
+#cmakedefine TEST_1
+#cmakedefine TEST_2

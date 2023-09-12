@@ -8,7 +8,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 # 输出 compile_commands.json 文件(用于clangd)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# 测试
 set(TEST_MSG ON)
+set(TEST_1 OFF)
+set(TEST_2 OFF)
 
 # 设置可执行文件的输出目录
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/idc/bin)
