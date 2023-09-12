@@ -52,11 +52,11 @@ int main(int argc, char *argv[])
 
         // 如果参数非法,给出帮助文档
         printf("Using:./crtsurfdata inifile outpath logfile datafmt\n");
-        printf("Example:"
-               PROJECT_PATH "/idc/bin/crtsurfdata " 
-               PROJECT_PATH "/idc/ini/stcode.ini "
-               "/tmp/idc/surfdata " 
-               PROJECT_PATH "/idc/log/idc/crtsurfdata.log "
+        printf("Example:"\
+               PROJECT_PATH "/idc/bin/crtsurfdata "\
+               PROJECT_PATH "/idc/ini/stcode.ini "\
+               "/tmp/idc/surfdata "\
+               PROJECT_PATH "/idc/log/idc/crtsurfdata.log "\
                "xml,json,csv\n\n");
 
         printf("inifile 全国气象站点参数文件名\n");
@@ -83,8 +83,8 @@ int main(int argc, char *argv[])
     CrtSurfData();
 
     // 把容器vsurfdata中的全国气象站点分钟观测数据写入文件
-    // if (strstr(argv[4], "xml") != 0) CrtSurfFile(argv[2], "xml");
-    // if (strstr(argv[4], "json") != 0) CrtSurfFile(argv[2], "json");
+    if (strstr(argv[4], "xml") != 0) CrtSurfFile(argv[2], "xml");
+    if (strstr(argv[4], "json") != 0) CrtSurfFile(argv[2], "json");
     if (strstr(argv[4], "csv") != 0) CrtSurfFile(argv[2], "csv");
 
     logfile.Write("crtsurfdata 运行结束\n");
@@ -144,9 +144,9 @@ bool LoadSTCode(const char *inifile)
 #ifdef TEST_2
     for (auto &it : vstcode)
     {
-        logfile.Write("provname=%s, obtid=%s, obtname=%s, "
-                      "lat=%.2f, lon=%.2f, height=%.2f\n",
-                      it.provname, it.obtid, it.obtname, it,
+        logfile.Write("provname=%s, obtid=%s, obtname=%s, "\
+                      "lat=%.2f, lon=%.2f, height=%.2f\n",\
+                      it.provname, it.obtid, it.obtname, it,\
                       it.lon, it.height);
     }
 #endif
@@ -208,15 +208,39 @@ bool CrtSurfFile(const char *outpath, const char *datafmt)
     if (strcmp(datafmt, "csv") == 0) File.Fprintf("站点代码,数据时间,气温,气压,相对湿度,风向,风速,降雨量,能见度\n");
 
     // 遍历存放观测数据的vsurfdata容器
-    if (strcmp(datafmt, "csv") == 0)
+    if (strcmp(datafmt, "xml") == 0)
     {
+        File.Fprintf("<data>\n");
         for (auto &it : vsurfdata)
         {
             // 写入一条记录
-            File.Fprintf("%s,%s,%.1f,%.1f,%d,%d,%.1f,%.1f,%.1f\n",
+            File.Fprintf("<obtid>%s</obtid><ddatetime>%s</ddatetime><t>%.1f</t><p>%.1f</p>"\
+                        "<u>%d</u><wd>%d</wd><wf>%.1f</wf><r>%.1f</r><vis>%.1f</vis><endl/>\n",\
+                        it.obtid, it.ddatetime, it.t / 10.0, it.p / 10.0,\
+                        it.u, it.wd, it.wf / 10.0, it.r / 10.0, it.vis / 10.0);
+        }
+        File.Fprintf("</data>\n");
+    }
+    else if (strcmp(datafmt, "json") == 0)
+    {
+        File.Fprintf("{\"data\":[\n");
+        bool is_first = true;
+        for (auto &it : vsurfdata)
+        {
+            if (is_first) is_first = false;
+            else File.Fprintf(",\n");
+            File.Fprintf("{\"obtid\":\"%s\",\"ddatetime\":\"%s\",\"t\":\"%.1f\",\"p\":\"%.1f\","
+                         "\"u\":\"%d\",\"wd\":\"%d\",\"wf\":\"%.1f\",\"r\":\"%.1f\",\"vis\":\"%.1f\"}",
                          it.obtid, it.ddatetime, it.t / 10.0, it.p / 10.0,
                          it.u, it.wd, it.wf / 10.0, it.r / 10.0, it.vis / 10.0);
         }
+        File.Fprintf("\n]}\n");
+    }
+    else if (strcmp(datafmt, "csv") == 0) for (auto &it : vsurfdata)
+    {
+        File.Fprintf("%s,%s,%.1f,%.1f,%d,%d,%.1f,%.1f,%.1f\n",\
+                     it.obtid, it.ddatetime, it.t / 10.0, it.p / 10.0,\
+                     it.u, it.wd, it.wf / 10.0, it.r / 10.0, it.vis / 10.0);
     }
 
     // 关闭文件
