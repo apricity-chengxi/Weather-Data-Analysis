@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
                PROJECT_PATH "/idc/bin/crtsurfdata "\
                PROJECT_PATH "/idc/ini/stcode.ini "\
                "/tmp/idc/surfdata "\
-               PROJECT_PATH "/idc/log/idc/crtsurfdata.log "\
+               PROJECT_PATH "/log/idc/crtsurfdata.log "\
                "xml,json,csv\n\n");
 
         printf("inifile 全国气象站点参数文件名\n");

@@ -1,7 +1,10 @@
 *.backup
 
-/.vscode
-/build
-/sourcecode
-/idc/bin
-/idc/log
+.vscode/
+build/
+sourcecode/
+idc/bin/*
+tools/bin/*
+log
+
+clear.sh

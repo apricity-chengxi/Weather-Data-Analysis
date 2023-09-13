@@ -25,3 +25,4 @@ include_directories(${PROJECT_BINARY_DIR})
 
 add_subdirectory(idc)
 add_subdirectory(public)
+add_subdirectory(tools)
