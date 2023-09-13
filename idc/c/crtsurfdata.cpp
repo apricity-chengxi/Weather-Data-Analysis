@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
     {
 
         // 如果参数非法,给出帮助文档
+        // clang-format off
         printf("Using:./crtsurfdata inifile outpath logfile datafmt\n");
         printf("Example:"\
                PROJECT_PATH "/idc/bin/crtsurfdata "\
@@ -63,7 +64,7 @@ int main(int argc, char *argv[])
         printf("outpath 全国气象站点数据文件存放的目录\n");
         printf("logfile 本程序运行的日志文件名\n");
         printf("datafmt 生成数据文件的格式,支持xml、json和csv三种格式,中间用逗号分隔\n\n");
-
+        // clang-format on
         return -1;
     }
 
