@@ -5,3 +5,4 @@
 #cmakedefine TEST_MSG
 #cmakedefine TEST_1
 #cmakedefine TEST_2
+#cmakedefine TEST_3

@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+#include "_public.h"
 #include "Define.h"
 
 int main(int argc, char *argv[])
@@ -32,11 +33,7 @@ int main(int argc, char *argv[])
     }
 
     // 关闭信号和IO,本程序不希望被打扰
-    for (int i = 0; i < 64; i++)
-    {
-        signal(i, SIG_IGN);
-        close(i);
-    }
+    CloseIOAndSignal(true);
 
     // 生成子进程,父进程退出,让程序运行在后台,由系统1号进程托管
     if (fork() != 0) exit(0);
