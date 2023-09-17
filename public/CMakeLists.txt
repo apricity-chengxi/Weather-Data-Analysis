@@ -20,14 +20,3 @@ target_include_directories(
 PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}"
 )
-
-
-add_library(PActice "")
-
-target_sources(
-    PActice
-PRIVATE
-    ${CMAKE_CURRENT_LIST_DIR}/PActice.cpp
-PUBLIC
-    ${CMAKE_CURRENT_LIST_DIR}/PActice.h
-)
