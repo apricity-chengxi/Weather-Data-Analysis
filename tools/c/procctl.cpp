@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     {
         // clang-format off
         printf("Using:./procctl timetvl program argv ...\n");
-        printf("Example:" 
+        printf("Example:"\
                PROJECT_PATH "/tools/bin/procctl "\
                "60 /home/zcx/project/Weather-Data-Analysis/idc/bin/crtsurfdata "\
                "/home/zcx/project/Weather-Data-Analysis/idc/ini/stcode.ini "\
@@ -42,8 +42,8 @@ int main(int argc, char *argv[])
     signal(SIGCHLD, SIG_DFL);
 
     char *pargv[argc];
-    for (int ii = 2; ii < argc; ii++)
-        pargv[ii - 2] = argv[ii];
+    for (int i = 2; i < argc; i++)
+        pargv[i - 2] = argv[i];
 
     pargv[argc - 2] = NULL;
 
