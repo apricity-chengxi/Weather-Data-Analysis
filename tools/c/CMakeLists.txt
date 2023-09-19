@@ -26,3 +26,32 @@ target_link_libraries(
 PRIVATE
     public
 )
+
+add_executable(gzipfiles gzipfiles.cpp)
+
+target_include_directories(
+    gzipfiles
+PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}"
+)
+
+target_link_libraries(
+    gzipfiles
+PRIVATE
+    public
+)
+
+
+add_executable(deletefiles deletefiles.cpp)
+
+target_include_directories(
+    deletefiles
+PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}"
+)
+
+target_link_libraries(
+    deletefiles
+PRIVATE
+    public
+)

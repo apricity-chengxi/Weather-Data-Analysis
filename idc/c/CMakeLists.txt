@@ -12,3 +12,6 @@ target_link_libraries(
 PRIVATE
     public
 )
+
+add_executable(start start.cpp)
+add_executable(killall killall.cpp)
