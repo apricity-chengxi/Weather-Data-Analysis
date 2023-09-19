@@ -11,6 +11,7 @@ PRIVATE
     # 注:${CMAKE_CURRENT_LIST_DIR}代表当前的CMakeLists.txt文档所在的绝对路径
     ${CMAKE_CURRENT_LIST_DIR}/_public.cpp
 PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/_cmpublic.h
     ${CMAKE_CURRENT_LIST_DIR}/_public.h
 )
 
@@ -19,4 +20,28 @@ target_include_directories(
     public
 PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}"
+)
+
+add_library(ftp "")
+
+target_sources(
+    ftp
+PRIVATE
+    ${CMAKE_CURRENT_LIST_DIR}/ftplib.c
+    ${CMAKE_CURRENT_LIST_DIR}/_ftp.cpp
+PUBLIC
+    ${CMAKE_CURRENT_LIST_DIR}/ftplib.h
+    ${CMAKE_CURRENT_LIST_DIR}/_ftp.h
+)
+
+target_include_directories(
+    ftp
+PUBLIC
+    "${CMAKE_CURRENT_SOURCE_DIR}"
+)
+
+target_link_libraries(
+    ftp
+PUBLIC
+    public
 )

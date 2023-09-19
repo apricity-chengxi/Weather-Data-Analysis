@@ -55,3 +55,18 @@ target_link_libraries(
 PRIVATE
     public
 )
+
+add_executable(ftpgetfiles ftpgetfiles.cpp)
+
+target_include_directories(
+    ftpgetfiles
+PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}"
+)
+
+target_link_libraries(
+    ftpgetfiles
+PRIVATE
+    public
+    ftp
+)
